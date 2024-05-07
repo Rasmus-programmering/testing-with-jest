@@ -1,17 +1,15 @@
-// unit-test.js
+// unit.test.js
 
-// Importerar filen som vi vill testa
-const Stack = require('../src/stack');
+// Importera funktionerna som du vill testa
+const stack = require('../src/stack');
 
-// Enhets testfall med Jest
-test('isEmpty should return true for an empty stack', () => {
-    const stack = new Stack();
-    expect(stack.isEmpty()).toBe(true);
-});
-
-// Ett till enhetstestfall
-test('isEmpty should return false for a non-empty stack', () => {
-    const stack = new Stack();
+// Enhetsprov för peek-funktionen
+test('Testar peek-funktionen - förväntat fel', () => {
+    // Lägger till några element i stacken för att testa peek
     stack.push(1);
-    expect(stack.isEmpty()).toBe(false);
+    stack.push(2);
+    stack.push(3);
+
+    // Förväntad felaktig utgång
+    expect(stack.peek()).toBe(3); // Testet förväntar sig 3, men faktiska resultatet är 2
 });

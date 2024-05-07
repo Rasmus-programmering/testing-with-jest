@@ -1,5 +1,3 @@
-// selenium-test.js
-
 // Importerar Selenium WebDriver och andra nödvändiga moduler
 const { Builder, By, until } = require('selenium-webdriver');
 
@@ -8,18 +6,16 @@ const { Builder, By, until } = require('selenium-webdriver');
     let driver = await new Builder().forBrowser('chrome').build();
     try {
         // Navigera till den webbsida du vill testa
-        await driver.get('http://example.com');
+        await driver.get('file:///C:/Users/rasmu/testing-with-jest/src/index.html');
 
-        // Ditt testfall här
-        // Exempel: Klicka på en knapp och verifiera att texten uppdateras
+        // Klicka på knappen "Vad finns överst på stacken?"
+        await driver.findElement(By.id('peek')).click();
 
-        // Klicka på knappen
-        await driver.findElement(By.css('button')).click();
-
-        // Vänta på att texten uppdateras
-        await driver.wait(until.elementTextIs(driver.findElement(By.id('output')), 'Button clicked!'));
+        // Vänta på att texten uppdateras och verifiera att den förväntade texten visas
+        await driver.wait(until.elementTextIs(driver.findElement(By.id('top_of_stack')), 'Expected Text'));
         
     } finally {
         await driver.quit();
     }
 })();
+
