@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "jest tests"
+    "test": "jest selenium.test.js unit.test.js"
   },
   "author": "Rasmus Pedersen",
   "license": "MIT",
