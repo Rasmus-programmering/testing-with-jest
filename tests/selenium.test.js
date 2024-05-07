@@ -11,11 +11,14 @@ const { Builder, By, until } = require('selenium-webdriver');
         // Klicka på knappen "Vad finns överst på stacken?"
         await driver.findElement(By.id('peek')).click();
 
-        // Vänta på att texten uppdateras och verifiera att den förväntade texten visas
-        await driver.wait(until.elementTextIs(driver.findElement(By.id('top_of_stack')), 'Expected Text'));
-        
+        // Vänta på att texten uppdateras
+        await driver.wait(async function() {
+            // Hämta texten från elementet med id 'top_of_stack'
+            let text = await driver.findElement(By.id('top_of_stack')).getText();
+            // Jämför texten med den förväntade texten
+            return text === 'Expected Text';
+        });
     } finally {
         await driver.quit();
     }
 })();
-
